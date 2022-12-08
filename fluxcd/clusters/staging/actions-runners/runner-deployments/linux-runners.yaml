@@ -1,0 +1,27 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: k8s-runners-linux
+  namespace: actions-runner-system
+spec:
+  template:
+    spec:
+      image: <REPLACE-ME>
+      nodeSelector:
+        kubernetes.io/os: linux
+        kubernetes.io/arch: amd64
+      repository: <REPLACE-ME>
+      labels:
+        - linux
+        - X64
+        - k8s-managed
+        - ubuntu-latest
+      env: []
+      resources:
+        limits:
+          cpu: "1.8"
+          memory: "7.6Gi"
+        requests:
+          cpu: "1.8"
+          memory: "7.6Gi"

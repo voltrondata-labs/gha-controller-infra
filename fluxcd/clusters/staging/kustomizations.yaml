@@ -1,0 +1,92 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: actions-runners-autoscalers
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: actions-runners
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./fluxcd/arrowci/clusters/staging/actions-runners/autoscaler-deployments
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: actions-runners
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: apps
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./fluxcd/arrowci/clusters/staging/actions-runners/runner-deployments
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: sources
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./fluxcd/arrowci/clusters/staging/apps
+  prune: true
+  wait: true
+  timeout: 5m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: aws-system
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: sources
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./fluxcd/arrowci/clusters/staging/aws-system
+  prune: true
+  wait: true
+  timeout: 5m0s
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: namespaces
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./fluxcd/arrowci/clusters/staging/namespaces
+  prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: sources
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: namespaces
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./fluxcd/arrowci/clusters/staging/sources
+  prune: true

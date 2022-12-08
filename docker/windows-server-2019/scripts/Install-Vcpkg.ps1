@@ -1,0 +1,19 @@
+################################################################################
+##  File:  Install-Vcpkg.ps1
+##  Desc:  Install vcpkg
+################################################################################
+. /installation-helpers/PathHelpers.ps1
+$Uri = 'https://github.com/Microsoft/vcpkg.git'
+$InstallDir = 'C:\vcpkg'
+$VcpkgExecPath = 'vcpkg.exe'
+
+git clone $Uri $InstallDir -q
+
+# Build and integrate vcpkg
+Invoke-Expression "$InstallDir\bootstrap-vcpkg.bat"
+Invoke-Expression "$InstallDir\$VcpkgExecPath integrate install"
+
+# Add vcpkg to system environment
+Add-MachinePathItem $InstallDir
+$env:Path = Get-MachinePath
+setx VCPKG_INSTALLATION_ROOT $InstallDir /M

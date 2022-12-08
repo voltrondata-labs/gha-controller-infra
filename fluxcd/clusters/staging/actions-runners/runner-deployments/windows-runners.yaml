@@ -1,0 +1,28 @@
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: k8s-runners-windows
+  namespace: actions-runner-system
+spec:
+  template:
+    spec:
+      image: <REPLACE-ME>
+      dockerdWithinRunnerContainer: true
+      nodeSelector:
+        kubernetes.io/os: windows
+        kubernetes.io/arch: amd64
+      repository: <REPLACE-ME>
+      labels:
+        - windows
+        - X64
+        - k8s-managed
+        - windows-2019
+      env: []
+      resources:
+        limits:
+          cpu: "1.8"
+          memory: "7.6Gi"
+        requests:
+          cpu: "1.8"
+          memory: "7.6Gi"

@@ -1,0 +1,27 @@
+name: Windows Self-Hosted Runner Docker Image Build
+
+on:
+  push:
+    branches: ["main" ]
+    paths:
+      - docker/windows-server-2019/Dockerfile
+  workflow_dispatch:
+
+jobs:
+  build-push:
+    runs-on: windows-2019
+    steps:
+    - name: Git Checkout
+      uses: actions/checkout@v3
+
+    - name: Log in to the Container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build . --file docker/windows-server-2019/Dockerfile --tag ghcr.io/<REPLACE-ME>/<REPLACE-ME>:windows-2019-runner-deployment
+        docker image push ghcr.io/<REPLACE-ME>/<REPLACE-ME>:windows-2019-runner-deployment
