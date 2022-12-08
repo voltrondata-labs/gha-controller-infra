@@ -1,0 +1,46 @@
+encryptionsalt: v1:hH9JNkDjt5Y=:v1:ypcV7RMIbDc55C0g:9G+bsWy42YzVmSOW9f4HP22RI7T4RA== # Pulumi will generate a new key for the production stack
+config:
+  aws:region: "us-west-1" # can be changed
+  gha-self-hosted-runners:region: "us-west-1" # can be changed
+  gha-self-hosted-runners:Vpc:
+    name: "gha-self-hosted-runners"
+    cidrBlock: "10.20.0.0/21" # can be changed
+    privateSubnets: 
+      - "10.20.5.0/24" # can be changed
+      - "10.20.6.0/24" # can be changed
+    privateSubnetsAZ:
+      - "us-west-1a" # can be changed
+      - "us-west-1b" # can be changed
+    publicSubnets: 
+      - "10.20.1.0/24" # can be changed
+      - "10.20.2.0/24" # can be changed
+    publicSubnetsAZ:
+      - "us-west-1a" # can be changed
+      - "us-west-1b" # can be changed
+    natGatewayPerAZ: false
+    tags:
+      environment: "staging" # can be changed
+  gha-self-hosted-runners:Eks:
+    Name: "gha-self-hosted-runners" # can be changed
+    Version: "1.23"
+    LinuxNodegroups:
+      nodegroup1:
+        name: "linux-nodegroup" # can be changed
+        minSize: "1" # can be changed
+        maxSize: "7" # can be changed
+        desiredSize: "1" # can be changed
+        diskSize: "50" # can be changed
+        instanceType: "m5.2xlarge" # can be changed
+        amiType: "AL2_x86_64" # can be changed
+        sshKey: "gha-self-hosted-runners" # needs to be created
+    WindowsNodegroups:
+      nodegroup1:
+        name: "windows-nodegroup" # can be changed
+        minSize: "1" # can be changed
+        maxSize: "3" # can be changed
+        desiredSize: "1" # can be changed
+        diskSize: "80" # can be changed
+        instanceType: "m5.2xlarge" # can be changed
+        sshKey: "gha-self-hosted-runners" # needs to be created
+    tags:
+      environment: "staging" # can be changed

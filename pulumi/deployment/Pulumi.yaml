@@ -1,0 +1,5 @@
+name: gha-self-hosted-runners
+runtime: go
+description: EKS cluster for the GitHub Actions self hosted runners deployment
+backend:
+  url: <REPLACE-ME>
