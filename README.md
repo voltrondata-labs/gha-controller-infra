@@ -22,9 +22,9 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 > 
 1. Deploy the S3 bucket we will use for the backend state
     1. There is a CloudFormation template in the `pulumi/backend` folder. Deploy it in the region you want to host the project
-2. Create an SSH Key in AWS EC2 and store it’s name: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
+2. Create an SSH Key in AWS EC2 and store its name: [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html)
 3. Open a terminal session
-    1. Confirm that you can see the S3 bucket created 
+    1. Confirm that you can see the S3 bucket created. 
         1. `aws s3 ls`
             
             > Set the profile (`AWS_PROFILE=XXX`) or the region (`AWS_REGION=XXX`), if you are not using the defaults in your profile
@@ -47,7 +47,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     > 
     1. `cd pulumi/arrowci`
     2. `pulumi stack init production`
-        1. **This step will create a new file called `Pulumi.production.yaml` which will only have the `encryptionsalt`; copy all of the other values from `Pulumi.staging.yaml` into this file and replace the details as needed. Remember that you need to replace the tags and the SSH Key Name at the least**
+        1. **This step will create a new file called `Pulumi.production.yaml` which will only have the `encryptionsalt`; copy all of the other values from `Pulumi.staging.yaml` into this file and replace the details as needed. Remember that you need to replace the tags and the SSH Key Name at the least.**
     3. `pulumi up`
 
 ### Pre-requisites for Flux and the Actions Runner Controller
@@ -77,10 +77,10 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     > Now we need to set up Flux with the Kubernetes cluster to have Continuous Deployment up and running in the cluster. This way we can manage the runners from the GitHub YAML files instead of from the `kubectl` CLI tool.
     > 
     1. Generate a [personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (PAT) that can create and manage existing repositories by checking all permissions under `repo` and `admin`
-        1. This PAT will be to write to the repo hosting the infrastructure. We recommend having a repository for the infrastructure and another repository which will be the one hosting and submitting the GitHub Actions.
+        1. This PAT will be to write to the repo hosting the infrastructure. We recommend having a repository for the infrastructure and another repository that will be the one hosting and submitting the GitHub Actions.
     2. Set your PAT: `export GITHUB_TOKEN=<your-token>`
     3. Bootstrap Flux in Production:
-        1. **`flux** bootstrap github --owner=<org> --repository=<repo> --path **flux**cd/arrowci/clusters/production --branch feat/pulumi-k8s-iac`
+        1. `flux bootstrap github --owner=<org> --repository=<repo> --path fluxcd/arrowci/clusters/production`
 
 ### Flux setup
 
@@ -88,8 +88,8 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     1. Copy all of the files in `fluxcd/arrowci/clusters/staging` into `fluxcd/arrowci/clusters/production` **except for the files inside the `flux-system` folder**.
     2. You need to replace/fill in values for two deployments:
         1. `aws-auth/aws-auth.yaml`
-            1. Replace the values for the two role ARN’s with the ones from the pulumi output. If you need to get the output again you can run `pulumi stack output` and it will print the values. The first value is for the Linux ARN and the second value is for the Windows ARN.
+            1. Replace the values for the two role ARNs with the ones from the pulumi output. If you need to get the output again you can run `pulumi stack output` and it will print the values. The first value is for the Linux ARN and the second value is for the Windows ARN.
         2. `apps/helm-cluster-autoscaler.yaml`
             1. The value of `rbac.serviceAccount.annotations.[eks.amazonaws.com/role-arn](http://eks.amazonaws.com/role-arn)` should also be replaced by the role ARN of the Cluster Autoscaler in your account. This also shows up in the `pulumi stack output` with the key `autoScalerRoleArn`.
 
-With these steps you should be successful in deploying an Actions Runner Controller with an Autoscaler enabled ready to receive jobs from the GitHub Actions API.
+With these steps, you should be successful in deploying an Actions Runner Controller with an Autoscaler enabled ready to receive jobs from the GitHub Actions API.
