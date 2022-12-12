@@ -1,5 +1,14 @@
 # GitHub Actions Controller Infrastructure
 
+* [Overview](#overview)
+* [Deployment Instructions](#deployment-instructions)
+    * [Pre-requisite Software Installation](#pre-requisite-software-installation)
+    * [AWS and GitHub Account Setup](#aws-and-github-account-setup)
+    * [Deploying the Pulumi setup](#deploying-the-pulumi-setup)
+    * [Pre-requisites for Flux and the Actions Runner Controller](#pre-requisites-for-flux-and-the-actions-runner-controller)
+    * [Flux setup](#flux-setup)
+* [License](#license)
+
 ## Overview
 
 The Voltron Data DevOps team has developed a solution to provide an Actions Runner Controller to support GitHub Actions workflows with a Kubernetes cluster that can auto-scale according to the needs of the workflows. It includes both Horizontal pod and node auto-scaling across both Linux and Windows nodes.
@@ -93,3 +102,19 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
             1. The value of `rbac.serviceAccount.annotations.[eks.amazonaws.com/role-arn](http://eks.amazonaws.com/role-arn)` should also be replaced by the role ARN of the Cluster Autoscaler in your account. This also shows up in the `pulumi stack output` with the key `autoScalerRoleArn`.
 
 With these steps, you should be successful in deploying an Actions Runner Controller with an Autoscaler enabled ready to receive jobs from the GitHub Actions API.
+
+## License
+
+Copyright [2022] [Voltron Data]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. 
