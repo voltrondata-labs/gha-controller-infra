@@ -50,13 +50,15 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 > 
 1. Clone the `voltrondata-labs/gha-controller-infra` repo
     1. `git clone git@github.com:voltrondata-labs/gha-controller-infra.git`
-2. Deploy a new stack of the Pulumi deployment:
+2. Update the URL of the Pulumi backend in `Pulumi.yaml` key `backend.url`
+3. Deploy a new stack of the Pulumi deployment:
     
     > This will create a new stack
     > 
     1. `cd pulumi/deployment`
     2. `pulumi stack init production`
         1. **This step will create a new file called `Pulumi.production.yaml` which will only have the `encryptionsalt`; copy all of the other values from `Pulumi.staging.yaml` into this file and replace the details as needed. Remember that you need to replace the tags and the SSH Key Name at the least.**
+        2. **It will ask you to create a passphrase; store it well as you will need it to make stack updates**
     3. `pulumi up`
 
 ### Pre-requisites for Flux and the Actions Runner Controller
