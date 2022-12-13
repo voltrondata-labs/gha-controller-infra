@@ -106,8 +106,9 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     2. You need to replace/fill in values for two deployments:
         1. `aws-system/aws-auth.yaml`
             1. Replace the values for the two role ARNs with the ones from the pulumi output. If you need to get the output again you can run `pulumi stack output` and it will print the values. The first value is for the Linux ARN and the second value is for the Windows ARN.
-        2. `apps/helm-cluster-autoscaler.yaml`
-            1. The value of `rbac.serviceAccount.annotations.[eks.amazonaws.com/role-arn` should also be replaced by the role ARN of the Cluster Autoscaler in your account. This also shows up in the `pulumi stack output` with the key `autoScalerRoleArn`.
+        2. `aws-system/aws-cluster-autoscaler-autodiscover.yaml`
+            1. The value of `annotations.[eks.amazonaws.com/role-arn`  in line 9 should also be replaced by the role ARN of the Cluster Autoscaler in your account. This also shows up in the `pulumi stack output` with the key `autoScalerRoleArn`.
+            2. The value of `k8s.io/cluster-autoscaler` in line 168 needs to be replaced with the cluster name
 
 With these steps, you should be successful in deploying an Actions Runner Controller with an Autoscaler enabled ready to receive jobs from the GitHub Actions API.
 
