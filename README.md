@@ -82,7 +82,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     6. Create a secret in the cluster to store the credentials (note the name):
         
         ```
-        kubectl create secret generic arrowci-controller-auth-secret \
+        kubectl create secret generic controller-manager \
             -n actions-runner-system \
             --from-literal=github_app_id=${APP_ID} \
             --from-literal=github_app_installation_id=${INSTALLATION_ID} \
