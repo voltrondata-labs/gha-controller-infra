@@ -97,7 +97,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
         1. This PAT will be to write to the repo hosting the infrastructure. We recommend having a repository for the infrastructure and another repository that will be the one hosting and submitting the GitHub Actions.
     2. Set your PAT: `export GITHUB_TOKEN=<your-token>`
     3. Bootstrap Flux in Production:
-        1. `flux bootstrap github --owner=<org> --repository=<repo> --path fluxcd/arrowci/clusters/production`
+        1. `flux bootstrap github --owner=<org> --repository=<repo> --path fluxcd/clusters/production`
 
 ### Flux setup
 
