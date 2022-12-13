@@ -73,7 +73,13 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     3. Follow the document linked above to get the App ID (`APP_ID`), Installation ID (`INSTALLATION_ID`), and the downloaded private key file (`PRIVATE_KEY_FILE_PATH`)
     4. Set your local `kubectl config` to the cluster you created:
         1. `aws eks update-kubeconfig --region region-code --name my-cluster`
-    5. Create a secret in the cluster to store the credentials (note the name):
+    5. Create the `actions-runner-system` namespace:
+
+        ```
+        kubectl create ns actions-runner-system
+        ```
+        
+    6. Create a secret in the cluster to store the credentials (note the name):
         
         ```
         kubectl create secret generic arrowci-controller-auth-secret \
