@@ -104,7 +104,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 1. Helm Deployments
     1. Copy all of the files in `fluxcd/arrowci/clusters/staging` into `fluxcd/arrowci/clusters/production` **except for the files inside the `flux-system` folder**.
     2. You need to replace/fill in values for two deployments:
-        1. `aws-auth/aws-auth.yaml`
+        1. `aws-system/aws-auth.yaml`
             1. Replace the values for the two role ARNs with the ones from the pulumi output. If you need to get the output again you can run `pulumi stack output` and it will print the values. The first value is for the Linux ARN and the second value is for the Windows ARN.
         2. `apps/helm-cluster-autoscaler.yaml`
             1. The value of `rbac.serviceAccount.annotations.[eks.amazonaws.com/role-arn` should also be replaced by the role ARN of the Cluster Autoscaler in your account. This also shows up in the `pulumi stack output` with the key `autoScalerRoleArn`.
