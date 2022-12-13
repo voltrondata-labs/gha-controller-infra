@@ -102,8 +102,9 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 ### Flux setup
 
 1. Helm Deployments
-    1. Copy all of the files in `fluxcd/arrowci/clusters/staging` into `fluxcd/arrowci/clusters/production` **except for the files inside the `flux-system` folder**.
-    2. You need to replace/fill in values for two deployments:
+    1. Copy all of the files in `fluxcd/clusters/staging` into `fluxcd/clusters/production` **except for the files inside the `flux-system` folder**.
+    2. Update the `kustomizations.yaml` file to point to the production cluster in the paths of the Kustomizations
+    3. You need to replace/fill in values for two deployments:
         1. `aws-system/aws-auth.yaml`
             1. Replace the values for the two role ARNs with the ones from the pulumi output. If you need to get the output again you can run `pulumi stack output` and it will print the values. The first value is for the Linux ARN and the second value is for the Windows ARN.
         2. `aws-system/aws-cluster-autoscaler-autodiscover.yaml`
