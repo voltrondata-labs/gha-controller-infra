@@ -78,16 +78,17 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     1. Create the organization’s GitHub app with the necessary scopes:
         1. [https://github.com/actions-runner-controller/actions-runner-controller/blob/master/docs/detailed-docs.md#deploying-using-github-app-authentication](https://github.com/actions-runner-controller/actions-runner-controller/blob/master/docs/detailed-docs.md#deploying-using-github-app-authentication)
     2. Install the GitHub App in the organization and give it access to the repository
-    3. Follow the document linked above to get the App ID (`APP_ID`), Installation ID (`INSTALLATION_ID`), and the downloaded private key file (`PRIVATE_KEY_FILE_PATH`)
-    4. Set your local `kubectl config` to the cluster you created:
+    3. Follow the document linked above to get the App ID (`APP_ID`), Installation ID (`INSTALLATION_ID`), and the downloaded private key file.
+    4. Format the private key file: `openssl pkcs8 -topk8 -inform PEM -outform PEM -in downloaded-key.pem -out new-key.pem -nocrypt`
+    5. Set your local `kubectl config` to the cluster you created:
         1. `aws eks update-kubeconfig --region region-code --name my-cluster`
-    5. Create the `actions-runner-system` namespace:
+    6. Create the `actions-runner-system` namespace:
 
         ```
         kubectl create ns actions-runner-system
         ```
         
-    6. Create a secret in the cluster to store the credentials (note the name):
+    7. Create a secret in the cluster to store the credentials (note the name):
         
         ```
         kubectl create secret generic controller-manager \
@@ -101,7 +102,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
     
     > Now we need to set up Flux with the Kubernetes cluster to have Continuous Deployment up and running in the cluster. This way we can manage the runners from the GitHub YAML files instead of from the `kubectl` CLI tool.
     > 
-    1. Generate a [personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (PAT) that can create and manage existing repositories by checking all permissions under `repo` and `admin`
+    1. Generate a [classic personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (PAT) that can create and manage existing repositories by checking all permissions under `repo` and `admin`
         1. This PAT will be to write to the repo hosting the infrastructure. We recommend having a repository for the infrastructure and another repository that will be the one hosting and submitting the GitHub Actions.
     2. Set your PAT: `export GITHUB_TOKEN=<your-token>`
     3. Bootstrap Flux in Production:
