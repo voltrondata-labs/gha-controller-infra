@@ -87,8 +87,15 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
         ```
         kubectl create ns actions-runner-system
         ```
+    7. Export the variables:
+
+        ```
+        export APP_ID=""
+        export INSTALLATION_ID=""
+        export PRIVATE_KEY_FILE_PATH=""
+        ```
         
-    7. Create a secret in the cluster to store the credentials (note the name):
+    8. Create a secret in the cluster to store the credentials (note the name):
         
         ```
         kubectl create secret generic controller-manager \
