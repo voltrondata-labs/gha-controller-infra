@@ -49,6 +49,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 *** ADD SECTION ***
 
 Update .github/workflows with this repo owner as the first parameter and the repo name as the second parameter.
+Trigger a mnaual run of each Action.
 
 ### Deploying the Pulumi setup
 
