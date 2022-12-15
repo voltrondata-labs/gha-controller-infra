@@ -46,11 +46,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 
 ### Docker & CI/CD
 
-*** ADD SECTION ***
-
-- Update .github/workflows with this repo owner as the first parameter and the repo name as the second parameter.
-- Trigger a manual run of each Action.
-- Change package visibility
+The Actions runners need a Docker image to launch the pods that will run them. The Dockerfiles for these images are defined in `docker/`. There are two GitHub Actions workflows as part of this repository to build and publish said images. In order to operationalize them you need to update the files in `.github/workflows` with this repository's owner as the first parameter and the repository's name as the second parameter where you see the placeholder <REPLACE-ME>. After doing this, trigger a manual run of each workflow. After ~ 25 minutes both jobs will finish building and pushing. Go to the main page of your repo in GitHub.com and click on the Packages section. Go to `Package Settings` and in the `Danger Zone` change the visibility of the images to public.
 
 ### Deploying the Pulumi setup
 
