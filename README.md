@@ -4,6 +4,7 @@
 * [Deployment Instructions](#deployment-instructions)
     * [Pre-requisite Software Installation](#pre-requisite-software-installation)
     * [AWS and GitHub Account Setup](#aws-and-github-account-setup)
+    * [Docker & CI/CD](#docker--cicd)
     * [Deploying the Pulumi setup](#deploying-the-pulumi-setup)
     * [Pre-requisites for Flux and the Actions Runner Controller](#pre-requisites-for-flux-and-the-actions-runner-controller)
     * [Flux setup](#flux-setup)
