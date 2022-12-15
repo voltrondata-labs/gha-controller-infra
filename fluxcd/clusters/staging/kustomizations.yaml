@@ -11,7 +11,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./fluxcd/arrowci/clusters/staging/actions-runners/autoscaler-deployments
+  path: ./fluxcd/clusters/staging/actions-runners/autoscaler-deployments
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -26,7 +26,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./fluxcd/arrowci/clusters/staging/actions-runners/runner-deployments
+  path: ./fluxcd/clusters/staging/actions-runners/runner-deployments
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -41,7 +41,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./fluxcd/arrowci/clusters/staging/apps
+  path: ./fluxcd/clusters/staging/apps
   prune: true
   wait: true
   timeout: 5m0s
@@ -58,7 +58,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./fluxcd/arrowci/clusters/staging/aws-system
+  path: ./fluxcd/clusters/staging/aws-system
   prune: true
   wait: true
   timeout: 5m0s
@@ -73,7 +73,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./fluxcd/arrowci/clusters/staging/namespaces
+  path: ./fluxcd/clusters/staging/namespaces
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -88,5 +88,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./fluxcd/arrowci/clusters/staging/sources
+  path: ./fluxcd/clusters/staging/sources
   prune: true
