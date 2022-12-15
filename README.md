@@ -44,6 +44,10 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 5. Make sure your GitHub account has an SSH Key configured:
     1. [https://github.com/settings/keys](https://github.com/settings/keys)
 
+### Docker & CI/CD
+
+*** ADD SECTION ***
+
 ### Deploying the Pulumi setup
 
 > Now that we have our local and cloud environments set up, we can continue with doing the main deployment of the stack
