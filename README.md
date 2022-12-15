@@ -125,8 +125,16 @@ The Actions runners need a Docker image to launch the pods that will run them. T
             2. The value of `k8s.io/cluster-autoscaler` in line 168 needs to be replaced with the cluster name
         3. `actions-runners/runner-deployments/`
             1. In both of the files in this folder you need to specify the image with the tag (see the Docker section above) and the repository which will be receiving the runners (`owner/repo-name` format).
+2. There is a problem with standing up Flux from the first go given the need of creating Custom Resource Definition's and the dependency order, to work around this limitation follow the next steps:
+   1. Remove the `actions-runners/` folder & the first two `Kustomization` entries in the `kustomizations.yaml` file (lines 1-30).
+   2. `git add .`; then `git commit -m "Fixing FluxCD loadup error"`; then `git push`
+   3. After 2 minutes of waiting, force a flux sync:  `flux reconcile kustomization flux-system`
+   4. After 5 minutes of waiting, check on the `kustomizations`: `flux get kustomization -A`
+   5. After all `kustomizations` are marked as ready; run a `git revert HASH_OF_THE_LAST_COMMIT`; then `git push`
+   6. After 2 minutes of waiting, force a flux sync:  `flux reconcile kustomization flux-system`
+   7. After 5 minutes of waiting, check on the `kustomizations`: `flux get kustomization -A`
 
-With these steps, you should be successful in deploying an Actions Runner Controller with an Autoscaler enabled ready to receive jobs from the GitHub Actions API.
+With these steps, you should be successful in deploying an Actions Runner Controller with an Autoscaler enabled ready to receive jobs from the GitHub Actions API and with FluxCD enabled.
 
 ## License
 
