@@ -10,13 +10,13 @@ config:
       - "10.20.6.0/24" # can be changed
     privateSubnetsAZ:
       - "us-west-1a" # can be changed
-      - "us-west-1b" # can be changed
+      - "us-west-1c" # can be changed
     publicSubnets: 
       - "10.20.1.0/24" # can be changed
       - "10.20.2.0/24" # can be changed
     publicSubnetsAZ:
       - "us-west-1a" # can be changed
-      - "us-west-1b" # can be changed
+      - "us-west-1c" # can be changed
     natGatewayPerAZ: false
     tags:
       environment: "staging" # can be changed
