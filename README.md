@@ -50,8 +50,7 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
 
 - Update .github/workflows with this repo owner as the first parameter and the repo name as the second parameter.
 - Trigger a manual run of each Action.
-
-Write section on publishing to DockerHub vs GitHub Container Registry
+- Change package visibility
 
 ### Deploying the Pulumi setup
 
