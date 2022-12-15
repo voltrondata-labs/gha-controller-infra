@@ -126,6 +126,8 @@ The Voltron Data DevOps team has developed a solution to provide an Actions Runn
         2. `aws-system/aws-cluster-autoscaler-autodiscover.yaml`
             1. The value of `annotations.[eks.amazonaws.com/role-arn`  in line 9 should also be replaced by the role ARN of the Cluster Autoscaler in your account. This also shows up in the `pulumi stack output` with the key `autoScalerRoleArn`.
             2. The value of `k8s.io/cluster-autoscaler` in line 168 needs to be replaced with the cluster name
+        3. `actions-runners/runner-deployments/`
+            1. In both of the files in this folder you need to specify the image with the tag (see the Docker section above) and the repository which will be receiving the runners (`owner/repo-name` format).
 
 With these steps, you should be successful in deploying an Actions Runner Controller with an Autoscaler enabled ready to receive jobs from the GitHub Actions API.
 
