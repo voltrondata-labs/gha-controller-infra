@@ -22,6 +22,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push Docker image
+      working-directory: docker/windows-server-2019
       run: |
-        docker build . --file docker/windows-server-2019/Dockerfile --tag ghcr.io/<REPLACE-ME>/<REPLACE-ME>:windows-2019-runner-deployment
+        docker build . --tag ghcr.io/<REPLACE-ME>/<REPLACE-ME>:windows-2019-runner-deployment
         docker image push ghcr.io/<REPLACE-ME>/<REPLACE-ME>:windows-2019-runner-deployment
