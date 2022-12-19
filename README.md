@@ -115,7 +115,7 @@ The Actions runners need a Docker image to launch the pods that will run them. T
 ### Flux setup
 
 1. Helm Deployments
-    1. Copy all of the files in `fluxcd/clusters/staging` into `fluxcd/clusters/production` **except for the files inside the `flux-system` folder**.
+    1. Copy all of the files in `fluxcd/clusters/staging` into `fluxcd/clusters/production` **There will already be a `flux-system` folder in `fluxcd/clusters/production` from the bootstap step. Do not delete it as this is the link to the Kubernetes Cluster.**.
     2. Update the `kustomizations.yaml` file to point to the production cluster in the paths of the Kustomizations
     3. You need to replace/fill in values for two deployments:
         1. `aws-system/aws-auth.yaml`

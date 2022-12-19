@@ -6,7 +6,7 @@ Resources:
   PulumiStateBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: voltrondata-devops-pulumi-state
+      BucketName: gha-controller-infra-pulumi-state
       VersioningConfiguration:
         Status: Enabled
       BucketEncryption:
@@ -21,47 +21,3 @@ Resources:
       Tags:
         - Key: environment
           Value: production
-        - Key: team
-          Value: devops
-        - Key: owner
-          Value: devops_voltrondata_com
-  GitHubFederatedIdentity:
-    Type: AWS::IAM::OIDCProvider
-    Properties:
-      ClientIdList:
-        - sts.amazonaws.com
-      ThumbprintList:
-        - 6938fd4d98bab03faadb97b34396831e3780aea1
-      Url: https://token.actions.githubusercontent.com
-  GitHubRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: devops-github-actions-oidc-role
-      AssumeRolePolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Principal:
-              Federated:
-                - !Ref GitHubFederatedIdentity
-            Action:
-              - 'sts:AssumeRoleWithWebIdentity'
-            Condition:
-              ForAllValues:StringEquals:
-                token.actions.githubusercontent.com:aud: sts.amazonaws.com
-                token.actions.githubusercontent.com:repository_owner: voltrondata
-  PulumiBackendPolicy:
-    Type: 'AWS::IAM::Policy'
-    Properties:
-      PolicyName: pulumi-s3-state-backend-access
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Effect: Allow
-            Action: 's3:ListBucket'
-            Resource: !Sub arn:aws:s3:::${PulumiStateBucket}
-          - Effect: Allow
-            Action: 's3:*Object'
-            Resource: !Sub arn:aws:s3:::${PulumiStateBucket}/*
-      Roles:
-        - !Ref GitHubRole

@@ -26,12 +26,6 @@ RUN pacman.exe -S --noconfirm --needed --noprogressbar clang
 
 RUN powershell choco feature enable -n allowGlobalConfirmation
 
-COPY scripts /installation-scripts
-
-COPY helpers /installation-helpers
-
-RUN Get-ChildItem '/installation-scripts' | % {  & $_.FullName }
-
 RUN powershell choco install python --version=3.7.9 
 
 RUN cp C:\Python37\python.exe C:\Python37\python3.exe
