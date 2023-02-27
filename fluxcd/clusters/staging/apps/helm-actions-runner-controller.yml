@@ -15,7 +15,7 @@ spec:
       version: 0.21.0
   values:
     authSecret:
-      name: arrowci-controller-auth-secret
+      name: controller-manager
       create: false
     nodeSelector:
       kubernetes.io/os: linux

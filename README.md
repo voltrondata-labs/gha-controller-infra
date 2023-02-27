@@ -119,7 +119,7 @@ The Actions runners need a Docker image to launch the pods that will run them. T
     2. Update the `kustomizations.yaml` file to point to the production cluster in the paths of the Kustomizations
     3. You need to replace/fill in values for two deployments:
         1. `aws-system/aws-auth.yaml`
-            1. Replace the values for the two role ARNs with the ones from the pulumi output. If you need to get the output again you can run `pulumi stack output` and it will print the values. The first value is for the Linux ARN and the second value is for the Windows ARN.
+            1. If you are not deploying Windows nodes delete the ``aws-system/aws-auth.yaml`` file. Otherwise replace the values for the role ARNs with the ones from the pulumi output. If you need to get the output again you can run `pulumi stack output` and it will print the values. If you replicate the default configuration the first value is for the Linux ARN and the second value is for the Windows ARN.
         2. `aws-system/aws-cluster-autoscaler-autodiscover.yaml`
             1. The value of `annotations.[eks.amazonaws.com/role-arn`  in line 9 should also be replaced by the role ARN of the Cluster Autoscaler in your account. This also shows up in the `pulumi stack output` with the key `autoScalerRoleArn`.
             2. The value of `k8s.io/cluster-autoscaler` in line 168 needs to be replaced with the cluster name

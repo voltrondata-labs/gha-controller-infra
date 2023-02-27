@@ -4,6 +4,7 @@ go 1.18
 
 replace github.com/voltrondata/pulumi-go-modules/AWS/eks => ../modules/eks
 replace github.com/voltrondata/pulumi-go-modules/AWS/vpc => ../modules/vpc
+replace github.com/voltrondata/pulumi-go-modules/shared/utilities => ../modules/utilities
 
 require (
 	github.com/pulumi/pulumi/sdk/v3 v3.36.0
